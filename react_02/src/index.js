@@ -16,28 +16,36 @@ import reportWebVitals from './reportWebVitals';
 // const element = <h1>Hello, {name}</h1>;
 // 위는 name이라는 변수를 선언한 후 중괄호로 감싸 JSX 안에 사용하였다
 
-function formatName(user) {
-  return user.firstName + ' ' + user.lastName;
-}
+// function formatName(user) {
+//   return user.firstName + ' ' + user.lastName;
+// }
 
-const user = {
-  firstName: 'Kang',
-  lastName: 'jisu'
-};
+// const user = {
+//   firstName: 'Kang',
+//   lastName: 'jisu'
+// };
+
+// const element = (
+//   <h1>
+//     Hello, {getGreeting(user)}
+//   </h1>
+// );
+
+// function getGreeting(user) {
+//   if (user) {
+//     return <h1>Hello, {formatName(user)}</h1>;
+//   }
+//   return <h1>Hello, Stranger</h1>;
+// }
+// JSX를 if 구문 및 for loop 안에 사용하고 변수 할당, 인자, 함수로부터 반환할 수 있다
 
 const element = (
-  <h1>
-    Hello, {getGreeting(user)}
-  </h1>
+  <div>
+    <h1>Hello</h1>
+    <h2>Good to see you here</h2>
+  </div>
 );
-
-function getGreeting(user) {
-  if (user) {
-    return <h1>Hello, {formatName(user)}</h1>;
-  }
-  return <h1>Hello, Stranger</h1>;
-}
-// JSX를 if 구문 및 for loop 안에 사용하고 변수 할당, 인자, 함수로부터 반환할 수 있다
+// jsx 태그는 자식을 포함할 수 있다
 
 ReactDOM.render(
   element,
