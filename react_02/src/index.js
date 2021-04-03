@@ -184,25 +184,25 @@ import reportWebVitals from './reportWebVitals';
 // 컴포넌트 렌더링
 
 // 이전까지는 React 엘리먼트를 DOM 태그로 나타냈다
-const element = <div />;
+// const element = <div />;
 
 // React 엘리먼트는 사용자 정의 컴포넌트로도 나타낼 수 있다
-const element = <Welcome name="Sara" />;
+// const element = <Welcome name="Sara" />;
 
 // React가 사용자 정의 컴포넌트로 작성한 엘리먼트를 발견하면
 // JSX 어트리뷰트와 자식을 해당 컴포넌트에 단일 객체로 전달한다
 // 이 객체를 props라고 한다
 
 // 다음은 페이지에 Hello,Sara를 렌더링하는 예시이다
-function Welcome(props) {
-  return <h1>Hello, {props.name}</h1>;
-}
+// function Welcome(props) {
+//   return <h1>Hello, {props.name}</h1>;
+// }
 
-const element = <Welcome name="Sara" />;
-ReactDOM.render(
-  element,
-  document.getElementById('root')
-);
+// const element = <Welcome name="Sara" />;
+// ReactDOM.render(
+//   element,
+//   document.getElementById('root')
+// );
 
 // 이 예시는 다음과 같은 일들이 일어난다
 
@@ -217,3 +217,36 @@ ReactDOM.render(
 // React는 소문자로 시작하는 컴포넌트를 DOM 태크로 처리한다
 // 예를 들어 <div />는 html div 태그를 나타내지만, 
 // <Welcome />은 컴포넌트를 나타내며 범위 안에 Welcome 이 있어야 한다
+
+// 컴포넌트 합성
+
+// 컴포넌트는 자신의 출력에 다른 컴포넌트를 참조할 수 있다
+// 이는 모든 세부 단계에서 동일한 추상 컴포넌트를 사용할 수 있음을 의미한다
+
+// React 앱에서는 버튼, 폼, 다이얼로그, 화면 등의 모든 것들이 흔히 컴포넌트로 표현된다
+
+// 예를 들어 Welcome을 여러 번 렌더링하는 App 컴포넌트를 만들 수 있다
+
+function Welcome(props) {
+  return <h1>Hello, {props.name}</h1>;
+}
+
+function App() {
+  return (
+    <div>
+      <Welcome name="Sara" />
+      <Welcome name="Jisu" />
+      <Welcome name="Heesoo" />
+    </div>
+  )
+}
+
+// 일반적으로 새 React 앱은 최상위에 단일 App 컴포넌트를 가지고 있다
+// 하지만 기존 앱에 React를 통합하는 경우 Button과 같은 작은 컴포넌트부터 시작해서 
+// 뷰 계층의 상단으로 올라가면서 점진적으로 작업해야 할 수 있다
+
+
+ReactDOM.render(
+  <App />,
+  document.getElementById('root')
+);
