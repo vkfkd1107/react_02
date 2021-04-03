@@ -54,32 +54,43 @@ import reportWebVitals from './reportWebVitals';
 // 모든 항목은 렌더링 되기 전에 문자열로 변환된다
 // 이러한 특성으로 XSS 공격을 방지할 수 있다
 
-const element = (
-  <h1 className="greeting">
-    Hello, world!
-  </h1>
-);
+// const element = (
+//   <h1 className="greeting">
+//     Hello, world!
+//   </h1>
+// );
 
-const element2 = React.createElement(
-  'h1',
-  {className: 'greeting'},
-  'Hello, world'
-);
+// const element2 = React.createElement(
+//   'h1',
+//   {className: 'greeting'},
+//   'Hello, world'
+// );
 
 // Babel은 JSX를 React.createElement() 호출로 컴파일한다
 // React.createElement()는 버그가 없는 코드를 작성하는데 도움이 되도록 몇 가지 검사를 수행
 
-const element3 = {
-  type: 'h1',
-  props: {
-    className: 'greeting',
-    children: 'Hello, world!'
-  }
-};
+// const element3 = {
+//   type: 'h1',
+//   props: {
+//     className: 'greeting',
+//     children: 'Hello, world!'
+//   }
+// };
 
 // 이런 객체를 React element 라고 한다
 // 이것을 화면에서 보고 싶은 것을 나타내는 표현이라 생각하면 된다
 // React는 이 객체를 읽어서, DOM을 구성하고 최신 상태로 유지하는 데 사용한다
+
+// 엘리먼트 렌더링
+
+// 엘리먼트는 React앱의 가장 작은 단위이다\
+
+// 엘리먼트는 화면에 표시할 내용을 기술한다
+
+const element = <h1>Hello, world</h1>;
+
+// 브라우저 DOM 엘리먼트와 달리 React 엘리먼트는 일반 객체이며 쉽게 생성할 수 있다
+// React DOM은 React 엘리먼트와 일치하도록 DOM을 업데이트한다
 
 ReactDOM.render(
   element,
