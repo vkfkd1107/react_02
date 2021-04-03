@@ -87,15 +87,26 @@ import reportWebVitals from './reportWebVitals';
 
 // 엘리먼트는 화면에 표시할 내용을 기술한다
 
-const element = <h1>Hello, world</h1>;
+// const element = <h1>Hello, world</h1>;
 
 // 브라우저 DOM 엘리먼트와 달리 React 엘리먼트는 일반 객체이며 쉽게 생성할 수 있다
 // React DOM은 React 엘리먼트와 일치하도록 DOM을 업데이트한다
 
-ReactDOM.render(
-  element,
-  document.getElementById('root')
-);
+// 엘리먼트는 컴포넌트의 '구성 요소'이다
+
+// ReactDOM.render(
+//   element,
+//   document.getElementById('root')
+// );
+
+// index.html에 <div id="root"></div> 가 있다
+// 이 안의 모든 엘리먼트를 ReactDOM에서 관리하므로 이것을 root DOM노드라고 한다
+// React로 구현된 애플리케이션은 일반적으로 하나의 루트 DOM노드가 있다
+// React를 기존 앱에 통합하려는 경우 원하는 만큼 많은 수의 독립된 루트 DOM노드가 있을 수 있다
+
+// React 엘리먼트를 루트 DOM 노드에 렌더링하려면 둘 다 ReactDOM.render()로 전달하면 된다
+const element = <h1>Hello, world</h1>;
+ReactDOM.render(element, document.getElementById('root'));
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
