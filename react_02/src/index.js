@@ -117,17 +117,17 @@ import reportWebVitals from './reportWebVitals';
 
 // UI를 업데이트 하는 유일한 방법은 새로운 엘리먼트를 생성하고 ReactDOM.render()로 전달하는거다
 
-function tick() {
-  const element = (
-    <div>
-      <h1>Hello, world!</h1>
-      <h2>It is {new Date().toLocaleTimeString()}</h2>
-    </div>
-  );
-  ReactDOM.render(element, document.getElementById('root'));
-}
+// function tick() {
+//   const element = (
+//     <div>
+//       <h1>Hello, world!</h1>
+//       <h2>It is {new Date().toLocaleTimeString()}</h2>
+//     </div>
+//   );
+//   ReactDOM.render(element, document.getElementById('root'));
+// }
 
-setInterval(tick, 1000);
+// setInterval(tick, 1000);
 
 // 위 함수는 setInterval() 콜백을 이용해 초마다 ReactDOM.render()를 호출한다
 // 실제로 대부분의 React앱은 ReactDOM.render()를 한 번만 호출한다
@@ -142,5 +142,16 @@ setInterval(tick, 1000);
 
 // 특정 시점에 UI가 어떻게 보일지 고민하는 접근법은 시간의 변화에 따라
 // UI가 어떻게 변화할지 고민하는 것보다 더 많은 버그를 없앨 수 있다
+
+
+// Component와 Props
+
+// 컴포넌트를 통해 UI를 재사용 가능한 개별적인 여러 조각으로 나누고, 각 조각을 살펴볼 수 있다
+// 이 페이지에서는 컴포넌트의 개념을 소개한다
+
+// 개념적으로 컴포넌트는 JavaScript 함수와 유사하다
+// Props라고 하는 임의의 입력을 받은 후,
+// 화면에 어떻게 표시되는지를 기술하는 React 엘리먼트를 반환한다
+
 
 reportWebVitals();
