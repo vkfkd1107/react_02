@@ -157,9 +157,9 @@ import reportWebVitals from './reportWebVitals';
 
 // 컴포넌트를 정의하는 가장 간단한 방법은 JavaScript 함수를 작성하는 것이다
 
-function Welcome(props) {
-  return <h1>Hello, {props.name}</h1>;
-}
+// function Welcome(props) {
+//   return <h1>Hello, {props.name}</h1>;
+// }
 
 // 이 함수는 데이터를 가진 하나의 props 객체 인자를 받은 후 React 앨리먼트를 반환하므로 유효한 React 컴포넌트이다
 // props: 속성을 나타내는 데이터이다
@@ -168,15 +168,52 @@ function Welcome(props) {
 
 // 또한 ES6 class를 사용하여 컴포넌트를 정의할 수 있다
 
-class Welcome2 extends React.Component {
-  render() {
-    return <h1>Hello, {this.props.name}</h1>;
-  }
-}
+// class Welcome2 extends React.Component {
+//   render() {
+//     return <h1>Hello, {this.props.name}</h1>;
+//   }
+// }
 
 // React 관점에서 위 두가지 유형의 컴포넌트는 동일하다
 
 // class는 몇 가지 추가 기능이 있다
 // 함수 컴포넌트와 클래스 컴포넌트 둘 다 몇 가지 추가 기능이 있다
 
-reportWebVitals();
+// reportWebVitals();
+
+// 컴포넌트 렌더링
+
+// 이전까지는 React 엘리먼트를 DOM 태그로 나타냈다
+const element = <div />;
+
+// React 엘리먼트는 사용자 정의 컴포넌트로도 나타낼 수 있다
+const element = <Welcome name="Sara" />;
+
+// React가 사용자 정의 컴포넌트로 작성한 엘리먼트를 발견하면
+// JSX 어트리뷰트와 자식을 해당 컴포넌트에 단일 객체로 전달한다
+// 이 객체를 props라고 한다
+
+// 다음은 페이지에 Hello,Sara를 렌더링하는 예시이다
+function Welcome(props) {
+  return <h1>Hello, {props.name}</h1>;
+}
+
+const element = <Welcome name="Sara" />;
+ReactDOM.render(
+  element,
+  document.getElementById('root')
+);
+
+// 이 예시는 다음과 같은 일들이 일어난다
+
+// 1. <Welcome name="Sara" /> 엘리먼트로 ReactDOM.render()를 호출한다
+// 2. React는 {name: 'Sara'} 를 props로 하여 Welcome 컴포넌트를 호출한다
+// 3. Welcome 컴포넌트는 결과적으로 <h1>Hello, Sara</h1> 엘리먼트를 반환한다
+// 4. React DOM은 <h1>Hello, Sara</h1> 엘리먼트와 일치하도록 DOM을 효율적으로 업데이트한다
+
+// **주의**
+// 컴포넌트의 이름은 항상 대문자로 시작한다
+
+// React는 소문자로 시작하는 컴포넌트를 DOM 태크로 처리한다
+// 예를 들어 <div />는 html div 태그를 나타내지만, 
+// <Welcome />은 컴포넌트를 나타내며 범위 안에 Welcome 이 있어야 한다
