@@ -27,9 +27,17 @@ const user = {
 
 const element = (
   <h1>
-    Hello, {formatName(user)}
+    Hello, {getGreeting(user)}
   </h1>
 );
+
+function getGreeting(user) {
+  if (user) {
+    return <h1>Hello, {formatName(user)}</h1>;
+  }
+  return <h1>Hello, Stranger</h1>;
+}
+// JSX를 if 구문 및 for loop 안에 사용하고 변수 할당, 인자, 함수로부터 반환할 수 있다
 
 ReactDOM.render(
   element,
