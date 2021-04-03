@@ -39,13 +39,20 @@ import reportWebVitals from './reportWebVitals';
 // }
 // JSX를 if 구문 및 for loop 안에 사용하고 변수 할당, 인자, 함수로부터 반환할 수 있다
 
-const element = (
-  <div>
-    <h1>Hello</h1>
-    <h2>Good to see you here</h2>
-  </div>
-);
+// const element = (
+//   <div>
+//     <h1>Hello</h1>
+//     <h2>Good to see you here</h2>
+//   </div>
+// );
 // jsx 태그는 자식을 포함할 수 있다
+
+const title = response.potentiallyMaliciousInput;
+const element = <h1>{title}</h1>
+// ReactDOM은 JSX에 삽입된 모든 값을 렌더링하기 전에 이스케이프 하므로,
+// 애플리케이션에서 명시적으로 작성되지 않은 내용은 주입되지 않는다
+// 모든 항목은 렌더링 되기 전에 문자열로 변환된다
+// 이러한 특성으로 XSS 공격을 방지할 수 있다
 
 ReactDOM.render(
   element,
