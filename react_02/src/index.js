@@ -105,10 +105,32 @@ import reportWebVitals from './reportWebVitals';
 // React를 기존 앱에 통합하려는 경우 원하는 만큼 많은 수의 독립된 루트 DOM노드가 있을 수 있다
 
 // React 엘리먼트를 루트 DOM 노드에 렌더링하려면 둘 다 ReactDOM.render()로 전달하면 된다
-const element = <h1>Hello, world</h1>;
-ReactDOM.render(element, document.getElementById('root'));
+// const element = <h1>Hello, world</h1>;
+// ReactDOM.render(element, document.getElementById('root'));
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+// 렌더링 된 엘리먼트 업데이트하기
+
+// React 엘리먼트는 불변객체이다
+
+// 엘리먼트를 생성한 이후에는 해당 엘리먼트의 자식이나 속성을 변경할 수 없다
+// 엘리먼트는 특정 시점의 UI를 보여준다
+
+// UI를 업데이트 하는 유일한 방법은 새로운 엘리먼트를 생성하고 ReactDOM.render()로 전달하는거다
+
+function tick() {
+  const element = (
+    <div>
+      <h1>Hello, world!</h1>
+      <h2>It is {new Date().toLocaleTimeString()}</h2>
+    </div>
+  );
+  ReactDOM.render(element, document.getElementById('root'));
+}
+
+setInterval(tick, 1000);
+
+// 위 함수는 setInterval() 콜백을 이용해 초마다 ReactDOM.render()를 호출한다
+// 실제로 대부분의 React앱은 ReactDOM.render()를 한 번만 호출한다
+
+
 reportWebVitals();
