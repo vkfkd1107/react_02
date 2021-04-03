@@ -153,5 +153,30 @@ import reportWebVitals from './reportWebVitals';
 // Props라고 하는 임의의 입력을 받은 후,
 // 화면에 어떻게 표시되는지를 기술하는 React 엘리먼트를 반환한다
 
+// 함수 컴포넌트와 클래스 컴포넌트
+
+// 컴포넌트를 정의하는 가장 간단한 방법은 JavaScript 함수를 작성하는 것이다
+
+function Welcome(props) {
+  return <h1>Hello, {props.name}</h1>;
+}
+
+// 이 함수는 데이터를 가진 하나의 props 객체 인자를 받은 후 React 앨리먼트를 반환하므로 유효한 React 컴포넌트이다
+// props: 속성을 나타내는 데이터이다
+
+// 이러한 컴포넌트는 JavaScript 함수이기 때문에 말 그대로 '함수 컴포넌트'라고 호칭한다
+
+// 또한 ES6 class를 사용하여 컴포넌트를 정의할 수 있다
+
+class Welcome2 extends React.Component {
+  render() {
+    return <h1>Hello, {this.props.name}</h1>;
+  }
+}
+
+// React 관점에서 위 두가지 유형의 컴포넌트는 동일하다
+
+// class는 몇 가지 추가 기능이 있다
+// 함수 컴포넌트와 클래스 컴포넌트 둘 다 몇 가지 추가 기능이 있다
 
 reportWebVitals();
