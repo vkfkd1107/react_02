@@ -227,26 +227,257 @@ import reportWebVitals from './reportWebVitals';
 
 // 예를 들어 Welcome을 여러 번 렌더링하는 App 컴포넌트를 만들 수 있다
 
-function Welcome(props) {
-  return <h1>Hello, {props.name}</h1>;
-}
+// function Welcome(props) {
+//   return <h1>Hello, {props.name}</h1>;
+// }
 
-function App() {
-  return (
-    <div>
-      <Welcome name="Sara" />
-      <Welcome name="Jisu" />
-      <Welcome name="Heesoo" />
-    </div>
-  )
-}
+// function App() {
+//   return (
+//     <div>
+//       <Welcome name="Sara" />
+//       <Welcome name="Jisu" />
+//       <Welcome name="Heesoo" />
+//     </div>
+//   )
+// }
 
 // 일반적으로 새 React 앱은 최상위에 단일 App 컴포넌트를 가지고 있다
 // 하지만 기존 앱에 React를 통합하는 경우 Button과 같은 작은 컴포넌트부터 시작해서 
 // 뷰 계층의 상단으로 올라가면서 점진적으로 작업해야 할 수 있다
 
 
+// 컴포넌트 추출
+
+// function formetDate(date) {
+//   return date.toLocaleDateString();
+// }
+
+// function Comment(props) {
+//   return (
+//     <div className="Comment">
+//       <div className="UserInfo">
+//         <img className="Avatar"
+//           src={props.author.avatarUrl}
+//           alt={props.author.name}
+//         />
+//         <div className="UserInfo-name">
+//           {props.author.name}
+//         </div>
+//       </div>
+//       <div className="Comment-text">
+//         {props.text}
+//       </div>
+//       <div className="Comment-date">
+//         {formetDate(props.date)}
+//       </div>
+//     </div>
+//   );
+// }
+
+// function Avatar(props) {
+//   return (
+//     <img className="Avatar"
+//       src={props.user.avatarUrl}
+//       alt={props.user.name}
+//     />
+//   )
+// }
+// Avatar는 자신이 Comment 내에서 렌더링 된다는 것을 알 필요가 없다
+// 따라서 props의 이름을 author에서 일반화된 user로 변경하였다
+
+// 이 컴포넌트는 author 객체, text 문자열 및 date 날짜를 props로 받은 후 
+// 소셜 미디어 웹 사이트의 코멘트를 나타낸다
+
+// 이 컴포넌트는 구성요소들이 모두 중첩 구조로 이루어져 있어서 변경하기 어려울 수 있으며,
+// 각 구성요소를 개별적으로 재사용하기도 힘들다
+
+// const comment = {
+//   date: new Date(),
+//   text: 'I hope you enjoy learning React!',
+//   author: {
+//     name: 'Hello Kitty',
+//     avatarUrl: 'https://placekitten.com/g/64/64',
+//   },
+// };
+
+// ReactDOM.render(
+//   <Comment 
+//     date={comment.date}
+//     text={comment.text}
+//     author={comment.author}
+//   />,
+//   document.getElementById('root')
+// );
+
+
+
+// Components and Props
+
+// 컴포넌트를 통해 UI를 재사용 가능한 개별적인 여러 조각으로 나누고, 각 조각을 개별적으로 살펴볼 수 있다
+
+// 컴포넌트는 개념적으로 JavaScript 함수와 유사하다
+// 'props'라는 임의의 입력을 받은 후, 화면에 어떻게 표시되는지 기술하는 React 엘리먼트를 반환한다
+
+// 함수컴포넌트와 클래스 컴포넌트
+
+// : 컴포넌트를 정의하는 가장 간단한 방법은 JavaStript함수를 작성하는 것이다
+
+// function Welcome(props) {
+//   return <h1>Hello, {props.name}</h1>;
+// }
+
+// 이 함수는 데이터를 가진 하나의 props 객체 인자를 받은 후 React 엘리먼트를 반환하므로 유효한 React 컴포넌트이다
+// 이런 컴포넌트는 JavaScript 함수이기 때문에 말 그대로 함수 컴포넌트라고 호칭한다
+
+// 또한 ES6 class 를 사용하여 컴포넌트를 정의할 수 있다
+
+// class Welcome extends React.Component {
+//   render() {
+//     return <h1>Hello, {this.props.name}</h1>;
+//   }
+// }
+
+// React의 관점에서 위 두 개 유형의 컴포넌트는 동일하다
+
+// const element = <div />;
+// 이 전까지는 이렇게 React 엘리먼트를 DOM 태그로 나타냈다
+
+// const element = <Welcome name="Sara" />;
+// React 엘리먼트는 사용자 정의 컴포넌트로도 나타낼 수 있다
+
+// React가 사용자 정의 컴포넌트로 작성한 엘리먼트를 발견하면 
+// JSX 어트리뷰트와 자식을 해당 컴포넌트에 단일 객체로 전달한다
+// 이 객체를 props라고 한다
+
+// function Welcome(props) {
+//   return <h1>Hello, {props.name}</h1>;
+// }
+
+// const element = <Welcome name="Sara" />;
+// ReactDOM.render(
+//   element,
+//   document.getElementById('root')
+// );
+
+// 1. <Welcome name="Sara" /> 엘리먼트로 ReactDOM.render()를 호출한다
+// 2. {name: "Sara"}를 props로 하여 Welcome 컴포넌트를 호출한다
+// 3. Welcome 컴포넌트는 <h1>Hello, Sara</h1> 엘리먼트를 반환한다
+// 4. ReactDOM은 <h1>Hello, Sara</h1> 엘리먼트와 일치하도록 DOM을 효율적으로 업데이트한다
+
+// 컴포넌트 합성
+
+// 컴포넌트는 자신의 출력에 다른 컴포넌트를 참조할 수 있다
+//  이는 모든 세부 단계에서 동일한 추상 컴포넌트를 사용할 수 있음을 의미한다
+// React 앱에서는 버튼, 폼, 다이얼로그, 화면 등의 모든 것들이 흔히 컴포넌트로 표현된다
+
+// function Welcome(props) {
+//   return <h1>Hello, {props.name}</h1>;
+// }
+
+// function App() {
+//   return (
+//     <div>
+//       <Welcome name="jisu1" />
+//       <Welcome name="jisu2" />
+//       <Welcome name="jisu3" />
+//     </div>
+//   );
+// }
+
+// ReactDOM.render(
+//   <App />,
+//   document.getElementById('root')
+// );
+
+// 일반적으로 새 React앱은 최상위에 단일 App 컴포넌트를 가지고 있다
+// 하지만 기존앱에 React를 통합하는 경우에는 Button과 같은 
+// 작은 컴포넌트부터 시작해서 뷰 계층의 상단으로 올라가면서 점진적으로 작업해야 할 수 있다
+
+
+// 컴포넌트 추출
+
+// const comment = {
+//   date: new Date(),
+//   text: 'I hope you enjoy learning React!',
+//   author: {
+//     name: 'Hello Kitty',
+//     avatarUrl: 'https://placekitten.com/g/64/64',
+//   },
+// };
+
+// function formatDate(date) {
+//   return date.toLocaleDateString();
+// }
+
+// function Avatar(props) {
+//   return (
+//     <img className="Avatar"
+//       src={props.user.avatarUrl}
+//       alt={props.user.name}
+//     />
+//   );
+// }
+// Avatar은 자신이 Comment 내에서 렌더링 된다는 것을 알 필요가 없다
+// 따라서 props의 이름을 author에서 더욱 일반화된 user로 변경하였다
+
+// props의 이름은 사용될 context가 아닌 컴포넌트 자체의 관점에서 짓는것을 권장한다
+
+// function UserInfo(props) {
+//   return (
+//     <div className="UserInfo">
+//       <Avatar user={props.user} />
+//       <div className="UserInfo-name">
+//         {props.user.name}
+//       </div>
+//     </div>
+//   );
+// }
+
+// Button, Panel, Avatar과 같이 여러 번 사용되거나 
+// App, FeedStory, Comment같은 UI 일부가 자체적으로 복잡한 경우 별도의 컴포넌트로 만드는게 좋다
+
+// function Comment(props) {
+//   return (
+//     <div className="Comment">
+//       <UserInfo user={props.author} />
+//       <div className="Comment-text">
+//         {props.text}
+//       </div>
+//       <div className="Comment=date">
+//         {formatDate(props.date)}
+//       </div>
+//     </div>
+//   );
+// }
+
+// 이 컴포넌트는 author(객체), text(문자열), date(날짜)를 props로 받은 후 코멘트를 나타낸다
+
+// props는 일기 전용이다
+
+// 함수 컴포넌트나 클래스 컴포넌트 모두 컴포넌트의 자체 props를 수정해서는 안된다
+
+function sum(a, b) {
+  return a+b;
+}
+// 이런 함수들을 순수함수라고 호칭하는데
+// 입력값을 바꾸려 하지 않고 항상 동일한 입력값에 대해 동일한 결과를 반환하기 때문이다
+
+function withdraw(account, amout) {
+  account.total -= amout;
+}
+// 이 함수는 자신의 입력값을 변경하기 때문에 순수함수가 아니다
+
+// 모든 React 컴포넌트는 자신의 props를 다룰 때 반드시 순수 함수처럼 동작해야한다
+
+// 애플리케이션 UI는 동적이며 시간에 따라 변한다
+// React 컴포넌트는 state를 통해 위 규칙을 위반하지 않고 
+// 사용자 액션, 네트워크 응답 및 다른 요소에 대한 응답으로 시간에 따라 자신의 출력값을 변경할 수 있다
+
 ReactDOM.render(
-  <App />,
+  <Comment 
+    date={comment.date}
+    text={comment.text}
+    author={comment.author}
+  />,
   document.getElementById('root')
-);
+)
