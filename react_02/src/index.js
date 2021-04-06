@@ -765,69 +765,160 @@ import reportWebVitals from './reportWebVitals';
 
 // React에서 조건부 렌더링은 JavaScript에서의 조건 처리와 같이 동작한다
 
-function UserGreeting(props) {
-  return <h1>Welcome back!</h1>;
-}
+// function UserGreeting(props) {
+//   return <h1>Welcome back!</h1>;
+// }
 
-function GuestGreeting(props) {
-  return <h1>Please sign up</h1>;
-}
+// function GuestGreeting(props) {
+//   return <h1>Please sign up</h1>;
+// }
 
-function Greeting(props) {
-  const isLoggedIn = props.isLoggedIn;
-  if (isLoggedIn) {
-    return <UserGreeting />;
-  }
-  return <GuestGreeting />;
-}
+// function Greeting(props) {
+//   const isLoggedIn = props.isLoggedIn;
+//   if (isLoggedIn) {
+//     return <UserGreeting />;
+//   }
+//   return <GuestGreeting />;
+// }
 
-function LoginButton(props) {
+// function LoginButton(props) {
+//   return (
+//     <button onClick={props.onClick}>
+//       Login
+//     </button>
+//   );
+// }
+
+// function LogoutButton(props) {
+//   return (
+//     <button onClick={props.onClick}>
+//       Logout
+//     </button>
+//   );
+// }
+
+// class LoginControl extends React.Component {
+//   constructor(props) {
+//     super(props);
+//     this.handleLoginClick = this.handleLoginClick.bind(this);
+//     this.handleLogoutClick = this.handleLogoutClick.bind(this);
+//     this.state = {isLoggedIn: false};
+//   }
+//   handleLoginClick() {
+//     this.setState({isLoggedIn: true});
+//   }
+//   handleLogoutClick() {
+//     this.setState({isLoggedIn: false});
+//   }
+//   render() {
+//     const isLoggedIn = this.state.isLoggedIn;
+//     let button;
+//     if (isLoggedIn) {
+//       button = <LogoutButton onClick={this.handleLogoutClick} />;
+//     }
+//     else {
+//       button = <LoginButton onClick={this.handleLoginClick} />;
+//     }
+//     return (
+//       <div>
+//         <Greeting isLoggedIn={isLoggedIn} />
+//       </div>
+//     );
+//   }
+// }
+
+
+// const listItems = numbers.map((number) => 
+//   <li>{number}</li>
+// );
+
+// function NumberList(props) {
+//   const numbers = props.numbers;
+//   const listItems = numbers.map((number) =>
+//     <li key={number.toString()}>
+//       {number}
+//     </li>
+//   );
+//   return (
+//     <ul>{listItems}</ul>
+//   );
+// }
+
+// const numbers = [1,2,3,4,5];
+
+// key는 React가 어떤 항목을 변경, 추가 또는 삭제할지 식별하는 것을 돕는다
+// key는 엘리먼트에 안정적인 고유성을 부여하기 위해 배열 내부의 엘리먼트에 지정해야 한다
+
+// const numbers = [1,2,3,4,5];
+// const listItems = numbers.map((number) => 
+//   <li key={number.toString()}>
+//     {number}
+//   </li>
+// );
+
+// key로 컴포넌트 추출하기
+
+// 키는 주변 배열의 context에서만 의미가 있다
+
+// 예를 들어 ListItem 컴포넌트를 추출한 경우 ListItem 안에 있는 li 엘리먼트가 아니라
+// ListItem 엘리먼트가 key를 가져야한다
+
+// function ListItem(props) {
+//   return <li>{props.value}</li>
+// }
+
+// function NumberList(props) {
+//   const numbers = props.numbers;
+//   const listItems = numbers.map((number) =>
+//     <ListItem key={number.toString()} value={number} />
+//   );
+//   return (
+//     <ul>
+//       {listItems}
+//     </ul>
+//   )
+// }
+// map 함수 내부에 있는 엘리먼트에 key를 넣어주는게 좋다
+
+// const numbers = [1,2,3,4,5];
+
+
+// key는 형제 사이에서만 고유한 값이어야 한다
+
+// key는 배열 안에서 형제 사이에서 고유해야 하고 전체 범위에서 고유할 필요는 없다
+// 두 개의 다른 배열을 만들 때 동일한 key를 사용할 수 있다
+
+function Blog(props) {
+  const sidebar = (
+    <ul>
+      {props.posts.map((post) =>
+        <li key={post.id}>
+          {post.title}
+        </li>
+      )}
+    </ul>
+  );
+  const content = props.posts.map((post) =>
+    <div key={post.id}>
+      <h3>{post.title}</h3>
+      <p>{post.content}</p>
+    </div>
+  );
   return (
-    <button onClick={props.onClick}>
-      Login
-    </button>
+    <div>
+      {sidebar}
+      <hr />
+      {content}
+    </div>
   );
 }
 
-function LogoutButton(props) {
-  return (
-    <button onClick={props.onClick}>
-      Logout
-    </button>
-  );
-}
-
-class LoginControl extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleLoginClick = this.handleLoginClick.bind(this);
-    this.handleLogoutClick = this.handleLogoutClick.bind(this);
-    this.state = {isLoggedIn: false};
-  }
-  handleLoginClick() {
-    this.setState({isLoggedIn: true});
-  }
-  handleLogoutClick() {
-    this.setState({isLoggedIn: false});
-  }
-  render() {
-    const isLoggedIn = this.state.isLoggedIn;
-    let button;
-    if (isLoggedIn) {
-      button = <LogoutButton onClick={this.handleLogoutClick} />;
-    }
-    else {
-      button = <LoginButton onClick={this.handleLoginClick} />;
-    }
-    return (
-      <div>
-        <Greeting isLoggedIn={isLoggedIn} />
-      </div>
-    );
-  }
-}
+const posts = [
+  {id: 1, title: 'Hello World', content: 'Welcome to learning React!'},
+  {id: 2, title: 'Installation', content: 'You can install React from npm.'}
+];
 
 ReactDOM.render(
-  <LoginControl />,
+  <Blog posts={posts} />,
   document.getElementById('root')
 );
